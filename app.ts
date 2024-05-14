@@ -32,7 +32,18 @@ type JokeReport = {
 jokeBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   generateJoke();
+  changeBlob();
 }); 
+
+let currentBlob: number = 1;
+
+function changeBlob() {
+  currentBlob = currentBlob % 8 + 1;
+  const blobElement = document.getElementById('blob');
+  
+    blobElement?.setAttribute('src','svgs/blob' + currentBlob + '.svg');
+  
+}
 
 function generateJoke() {
   removeAllEmojiSelected();

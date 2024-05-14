@@ -15,5 +15,16 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
-    
 }
+
+.emoji{
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.selected {
+    border: 2px solid black;
+    border-radius: 50%;
+  }

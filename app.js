@@ -1,4 +1,19 @@
 "use strict";
+//WEATHER
+const temperature = document.getElementById('temperature');
+const weatherIcon = document.getElementById('weatherIcon');
+function getWeather() {
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=e8ddef016ed1b79eaba39708770c480e')
+        .then((res) => res.json())
+        .then((data) => {
+        if (temperature) {
+            temperature.innerHTML = (data.main.temp - 273.15).toFixed(1) + '°C';
+            weatherIcon === null || weatherIcon === void 0 ? void 0 : weatherIcon.setAttribute('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png');
+        }
+    });
+}
+getWeather();
+//JOKES
 const joke = document.getElementById('joke');
 const jokeBtn = document.getElementById('jokeBtn');
 const emojiBtn1 = document.getElementById('emojiBtn1');
@@ -9,6 +24,7 @@ jokeBtn === null || jokeBtn === void 0 ? void 0 : jokeBtn.addEventListener('clic
     generateJoke();
 });
 function generateJoke() {
+    removeAllEmojiSelected();
     fetch('https://icanhazdadjoke.com/', {
         headers: {
             'Accept': 'application/json'
@@ -36,10 +52,7 @@ function vote(score) {
                 jokeScore = null;
             }
             else {
-                for (let i = 1; i <= 3; i++) {
-                    const otherEmojiBtn = document.getElementById(`emojiBtn${i}`);
-                    otherEmojiBtn === null || otherEmojiBtn === void 0 ? void 0 : otherEmojiBtn.classList.remove('selected');
-                }
+                removeAllEmojiSelected();
                 emojiBtn.classList.add('selected');
             }
         }
@@ -49,5 +62,13 @@ function vote(score) {
             date: new Date().toISOString()
         };
         console.log(jokeReport);
+    }
+}
+function removeAllEmojiSelected() {
+    for (let i = 1; i <= 3; i++) {
+        let emojiBtn = document.getElementById('emojiBtn' + i);
+        if (emojiBtn) {
+            emojiBtn.classList.remove('selected');
+        }
     }
 }

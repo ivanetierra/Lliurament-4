@@ -1,5 +1,4 @@
 //WEATHER
-
 const temperature = document.getElementById('temperature');
 const weatherIcon = document.getElementById('weatherIcon');
 
@@ -37,25 +36,39 @@ jokeBtn?.addEventListener('click', (e) => {
 
 function generateJoke() {
   removeAllEmojiSelected();
-  fetch('https://icanhazdadjoke.com/', {
-    headers: {
+
+  let url: string;
+  let headers: HeadersInit;
+  
+  if (Math.floor(Math.random() * 2) == 0) {
+    url = 'https://icanhazdadjoke.com/';
+    headers = {
       'Accept': 'application/json'
-    }
-  })  
-  .then((res) => res.json())
-  .then((data) => {
-    if (joke){
-      joke.innerHTML = data.joke;
-      
-    }
-  }) 
+    };
+  } else {
+    url = 'https://api.api-ninjas.com/v1/chucknorris';
+    headers = {
+      'X-Api-Key': 'ugMhXdE94qV7GglHO8Lk4w==wtpv0itY1o1KeblR'
+    };
+  }
+  
+  fetch(url, { headers })
+    .then((res) => res.json())
+    .then((data) => {
+      if (joke) {
+        joke.innerHTML = data.joke;
+      }
+    });
 }
+
+
+
 
 emojiBtn1?.addEventListener('click',() => vote(1));
 emojiBtn2?.addEventListener('click',() => vote(2));
 emojiBtn3?.addEventListener('click',() => vote(3));
 
-function vote(score: number | null) {
+function vote(score: number) {
   let joke = document.getElementById('joke');
   let emojiBtn = document.getElementById('emojiBtn' + score);
   let jokeScore = score;
@@ -66,7 +79,7 @@ function vote(score: number | null) {
     if (emojiBtn) {
       if (emojiBtn.classList.contains('selected')) {
         emojiBtn.classList.remove('selected');
-        jokeScore = null;    
+        jokeScore = 0;    
       } else {
         removeAllEmojiSelected();
         emojiBtn.classList.add('selected');
@@ -75,11 +88,10 @@ function vote(score: number | null) {
      
     const jokeReport: JokeReport = {
       joke: jokeText,
-      score: jokeScore as number, 
+      score: jokeScore, 
       date: new Date().toISOString()
     }
     console.log(jokeReport);
-  
   }
 }
 

@@ -25,11 +25,21 @@ jokeBtn === null || jokeBtn === void 0 ? void 0 : jokeBtn.addEventListener('clic
 });
 function generateJoke() {
     removeAllEmojiSelected();
-    fetch('https://icanhazdadjoke.com/', {
-        headers: {
+    let url;
+    let headers;
+    if (Math.floor(Math.random() * 2) == 0) {
+        url = 'https://icanhazdadjoke.com/';
+        headers = {
             'Accept': 'application/json'
-        }
-    })
+        };
+    }
+    else {
+        url = 'https://api.api-ninjas.com/v1/chucknorris';
+        headers = {
+            'X-Api-Key': 'ugMhXdE94qV7GglHO8Lk4w==wtpv0itY1o1KeblR'
+        };
+    }
+    fetch(url, { headers })
         .then((res) => res.json())
         .then((data) => {
         if (joke) {
@@ -49,7 +59,7 @@ function vote(score) {
         if (emojiBtn) {
             if (emojiBtn.classList.contains('selected')) {
                 emojiBtn.classList.remove('selected');
-                jokeScore = null;
+                jokeScore = 0;
             }
             else {
                 removeAllEmojiSelected();

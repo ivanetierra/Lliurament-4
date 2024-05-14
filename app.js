@@ -54,6 +54,7 @@ function generateJoke() {
         }
     });
 }
+//EMOJIS
 emojiBtn1 === null || emojiBtn1 === void 0 ? void 0 : emojiBtn1.addEventListener('click', () => vote(1));
 emojiBtn2 === null || emojiBtn2 === void 0 ? void 0 : emojiBtn2.addEventListener('click', () => vote(2));
 emojiBtn3 === null || emojiBtn3 === void 0 ? void 0 : emojiBtn3.addEventListener('click', () => vote(3));

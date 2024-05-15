@@ -13,4 +13,6 @@ Consumir diferentes API's (chistes y tiempo meteorologico) para mostrar por pant
   
 ## 📋 Requisitos
 
-- Node.js y npm instalados en tu sistema. (comando:npm install)
+- Node.js y npm instalados en tu sistema. ```bash
+npm install
+```

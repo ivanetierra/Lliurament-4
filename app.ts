@@ -35,15 +35,6 @@ jokeBtn?.addEventListener('click', (e) => {
   changeBlob();
 }); 
 
-let currentBlob: number = 1;
-
-function changeBlob() {
-  currentBlob = currentBlob % 8 + 1;
-  const blobElement = document.getElementById('blob');
-  
-    blobElement?.setAttribute('src','svgs/blob' + currentBlob + '.svg');
-  
-}
 
 function generateJoke() {
   removeAllEmojiSelected();
@@ -72,6 +63,15 @@ function generateJoke() {
     });
 }
 
+//BLOB
+let currentBlob: number = 1;
+
+function changeBlob() {
+  currentBlob = currentBlob % 8 + 1;
+  const blobElement = document.getElementById('blob');
+  
+    blobElement?.setAttribute('src','svgs/blob' + currentBlob + '.svg');
+}
 
 //EMOJIS
 emojiBtn1?.addEventListener('click',() => vote(1));

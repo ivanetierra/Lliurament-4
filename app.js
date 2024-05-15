@@ -24,12 +24,6 @@ jokeBtn === null || jokeBtn === void 0 ? void 0 : jokeBtn.addEventListener('clic
     generateJoke();
     changeBlob();
 });
-let currentBlob = 1;
-function changeBlob() {
-    currentBlob = currentBlob % 8 + 1;
-    const blobElement = document.getElementById('blob');
-    blobElement === null || blobElement === void 0 ? void 0 : blobElement.setAttribute('src', 'svgs/blob' + currentBlob + '.svg');
-}
 function generateJoke() {
     removeAllEmojiSelected();
     let url;
@@ -53,6 +47,13 @@ function generateJoke() {
             joke.innerHTML = data.joke;
         }
     });
+}
+//BLOB
+let currentBlob = 1;
+function changeBlob() {
+    currentBlob = currentBlob % 8 + 1;
+    const blobElement = document.getElementById('blob');
+    blobElement === null || blobElement === void 0 ? void 0 : blobElement.setAttribute('src', 'svgs/blob' + currentBlob + '.svg');
 }
 //EMOJIS
 emojiBtn1 === null || emojiBtn1 === void 0 ? void 0 : emojiBtn1.addEventListener('click', () => vote(1));
